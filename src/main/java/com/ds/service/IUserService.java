@@ -1,6 +1,7 @@
 package com.ds.service;
 
 import com.ds.persist.domain.User;
+import com.ds.web.form.UserSignUpForm;
 
 public interface IUserService extends IBaseService {
 	/**
@@ -13,7 +14,7 @@ public interface IUserService extends IBaseService {
 	 * @param password
 	 * @return
 	 */
-	public User createUser(String email, String password);
+	public User createUser(UserSignUpForm userSignUpForm);
 	
 	/**
 	 * Check if email has been registered before.

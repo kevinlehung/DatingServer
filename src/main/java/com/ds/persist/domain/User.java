@@ -64,7 +64,13 @@ public class User implements Serializable {
 	//bi-directional many-to-one association to UserPhoto
 	@OneToMany(mappedBy="user")
 	private List<UserPhoto> userPhotos;
-
+	
+	public User(String userName, String userEmail, String password) {
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.password = password;
+	}
+	
 	public User() {
 	}
 

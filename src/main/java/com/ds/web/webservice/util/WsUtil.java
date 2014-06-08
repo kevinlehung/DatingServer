@@ -1,7 +1,5 @@
 package com.ds.web.webservice.util;
 
-import org.springframework.beans.BeanUtils;
-
 import com.ds.security.bean.DsUserDetails;
 import com.ds.web.util.SecurityUtil;
 import com.ds.web.webservice.bean.BaseWsBean;
@@ -16,7 +14,7 @@ public class WsUtil {
 	public static UserDetailWsBean buildFailedUserDetailWsBean() {
 		UserDetailWsBean userDetailWsBean = new UserDetailWsBean();
 		userDetailWsBean.setStatusMessage(BaseWsBean.StatusMessage.FAILED);
-		userDetailWsBean.setProcessStatus(BaseWsBean.ProcessageStatus.SUCCESSED);
+		userDetailWsBean.setProcessStatus(BaseWsBean.ProcessStatus.SUCCESSED);
 		return userDetailWsBean;
 	}
 
@@ -26,5 +24,10 @@ public class WsUtil {
 		
 		userDetailWsBean.setUserEmail(dsUserDetails.getUsername());
 		return userDetailWsBean;
+	}
+	
+	public static void setWsResult(BaseWsBean wsResultBean, String processStatus, String statusMessage) {
+		wsResultBean.setProcessStatus(processStatus);
+		wsResultBean.setStatusMessage(statusMessage);
 	}
 }

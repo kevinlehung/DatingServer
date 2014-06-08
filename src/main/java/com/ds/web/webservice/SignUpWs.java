@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -39,12 +39,12 @@ public class SignUpWs {
 			produces={"application/xml", "application/json"})
     @ResponseStatus(HttpStatus.OK)
 	public UserDetailWsBean doSignup(HttpServletRequest request, HttpServletResponse response,
-    		@Valid @ModelAttribute UserSignUpForm userSignUpForm, BindingResult result) {
+    		@Valid@RequestBody UserSignUpForm userSignUpForm, BindingResult result) {
 		boolean hasError = result.hasErrors();
 		UserDetailWsBean userDetailWsBean = null;
 		
 		if (!hasError) {
-			User user = userService.createUser(userSignUpForm.getEmail(), userSignUpForm.getPassword());
+			User user = userService.createUser(userSignUpForm);
 			SecurityUtil.authenticateUserAndSetSession(user, request, authenticationManager);
 			userDetailWsBean = WsUtil.buildSuccessUserDetailWsBean();
 		} else {

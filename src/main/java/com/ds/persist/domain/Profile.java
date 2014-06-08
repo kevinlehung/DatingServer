@@ -25,7 +25,6 @@ public class Profile implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="USER_ID", unique=true, nullable=false)
 	private int userId;
 
@@ -46,6 +45,13 @@ public class Profile implements Serializable {
 	@JoinColumn(name="USER_ID", nullable=false, insertable=false, updatable=false)
 	private User user;
 
+	public Profile(int userId, String fullName, String gender, String aboutMe) {
+		this.userId = userId;
+		this.fullName = fullName;
+		this.gender = gender;
+		this.aboutMe = aboutMe;
+	}
+	
 	public Profile() {
 	}
 

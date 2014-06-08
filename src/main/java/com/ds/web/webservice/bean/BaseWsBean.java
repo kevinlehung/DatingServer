@@ -6,7 +6,7 @@ package com.ds.web.webservice.bean;
  * 
  */
 public class BaseWsBean {
-	public interface ProcessageStatus {
+	public interface ProcessStatus {
 		public static final String SUCCESSED = "SUCCESSED";
 		public static final String FAILED = "FAILED";
 	}
@@ -16,9 +16,8 @@ public class BaseWsBean {
 		public static final String FAILED = "Failed to process service.";
 	}
 
-	private String processStatus = ProcessageStatus.SUCCESSED;
+	private String processStatus = ProcessStatus.SUCCESSED;
 	private String statusMessage = StatusMessage.SUCCESSED;
-	private String result;
 
 	public String getProcessStatus() {
 		return processStatus;
@@ -36,11 +35,4 @@ public class BaseWsBean {
 		this.statusMessage = statusMessage;
 	}
 
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
-	}
 }

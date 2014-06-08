@@ -63,7 +63,7 @@ public class SignUpController extends BaseController {
     		@Valid @ModelAttribute UserSignUpForm userSignUpForm, BindingResult result) throws IOException {
 		boolean hasError = result.hasErrors();
 		if (!hasError) {
-			User user = userService.createUser(userSignUpForm.getEmail(), userSignUpForm.getPassword());
+			User user = userService.createUser(userSignUpForm);
 			SecurityUtil.authenticateUserAndSetSession(user, request, authenticationManager);
 			return WebConstants.Views.SIGN_UP_SUCCESS;
 		} else {

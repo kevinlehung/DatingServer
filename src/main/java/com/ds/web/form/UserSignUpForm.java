@@ -28,6 +28,12 @@ public class UserSignUpForm {
 	@AssertTrue(message = "You must accept user agreement.")
 	private boolean acceptAgreement;
 	
+	private String fullName;
+	
+	private String aboutMe;
+	
+	private String gender;
+	
 	public String getEmail() {
 		return email;
 	}
@@ -59,6 +65,28 @@ public class UserSignUpForm {
 	public void setAcceptAgreement(boolean acceptAgreement) {
 		this.acceptAgreement = acceptAgreement;
 	}
-	
-	
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getAboutMe() {
+		return aboutMe;
+	}
+
+	public void setAboutMe(String aboutMe) {
+		this.aboutMe = aboutMe;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 }
