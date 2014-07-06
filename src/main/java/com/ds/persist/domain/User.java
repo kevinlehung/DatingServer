@@ -65,6 +65,10 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private List<UserPhoto> userPhotos;
 	
+	public User(int userId) {
+		this.userId = userId;
+	}
+	
 	public User(String userName, String userEmail, String password) {
 		this.userName = userName;
 		this.userEmail = userEmail;

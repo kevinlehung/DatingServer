@@ -6,9 +6,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
-import com.ds.persist.domain.User;
-import com.ds.validator.constraint.EnumCheck;
-
 /**
  * Form for sign_up page
  * 
@@ -33,6 +30,8 @@ public class UserSignUpForm {
 	private String aboutMe;
 	
 	private String gender;
+	
+	private String maritalStatus;
 	
 	public String getEmail() {
 		return email;
@@ -89,4 +88,14 @@ public class UserSignUpForm {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+	public String getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	public void setMaritalStatus(String maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
+	
+	
 }

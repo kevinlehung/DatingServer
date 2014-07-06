@@ -18,7 +18,6 @@ import com.ds.service.IUserService;
 import com.ds.web.form.UserSignInForm;
 import com.ds.web.util.SecurityUtil;
 import com.ds.web.webservice.bean.LoginWsBean;
-import com.ds.web.webservice.bean.BaseWsBean.ProcessStatus;
 
 /**
  *
@@ -43,11 +42,10 @@ public class SignInWs {
 			String userEmail = userSignInForm.getEmail();
 			String password = userSignInForm.getPassword();
 			SecurityUtil.authenticateUserAndSetSession(userEmail, password, request, authenticationManager);
-			loginWsBean.setStatusMessage(LoginWsBean.LoginResult.LOGIN_SUCCESSED);
+			loginWsBean.setResultCode(LoginWsBean.LOGIN_SUCCESSED_CODE);
 			loginWsBean.setjSessionId(request.getSession().getId());
 		} catch (Exception e) {
-			loginWsBean.setStatusMessage(LoginWsBean.LoginResult.LOGIN_FAILED);
-			loginWsBean.setProcessStatus(ProcessStatus.FAILED);
+			loginWsBean.setResultCode(LoginWsBean.LOGIN_FAILED_CODE);
 		}
 		return loginWsBean;
 		

@@ -15,7 +15,7 @@ public class WsTesterHelper {
 	public static HttpHeaders buildBasicHeaders() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setAccept(Arrays.asList(new MediaType[]{MediaType.APPLICATION_JSON, MediaType.APPLICATION_OCTET_STREAM}));
 		return headers;
 	}
 

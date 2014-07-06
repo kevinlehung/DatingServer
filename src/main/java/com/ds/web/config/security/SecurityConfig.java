@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().requireCsrfProtectionMatcher(new DsRequiresCsrfMatcher());
 		
 		http.authorizeRequests()
-        	.antMatchers("/assets/**", "/sec/sign_up.ds", "/ws/sign_up.ds").permitAll()
+        	.antMatchers("/assets/**", "/sec/sign_up.ds").permitAll()
             .anyRequest().hasAuthority("USER")
 		.and()
         	.formLogin()
@@ -86,7 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			http.antMatcher("/ws/**")
 				.authorizeRequests()
 				//.antMatchers("/ws/sign_in.ds", "/ws/sign_up.ds").permitAll()
-				.antMatchers("/ws/sign_in.ds", "/ws/sign_up.ds", "/ws/search_user_profile.ds").permitAll()
+				.antMatchers("/ws/sign_in.ds", "/ws/sign_up.ds", "/ws/retrieve_photo.ds").permitAll()
 				.antMatchers("/ws/**").hasAuthority("USER")
 				.and()
 				.httpBasic();

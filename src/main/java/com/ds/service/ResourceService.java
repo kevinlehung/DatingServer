@@ -37,7 +37,11 @@ public class ResourceService extends BaseService implements IResourceService {
 		String photoPath = addPhotoToFileSystem(file, fileName);
 		
 		resource.setPath(photoPath);
-		resource.setResourceName(fileName);
+		if (fileName != null) {
+			resource.setResourceName(fileName);
+		} else {
+			resource.setResourceName(file.getOriginalFilename());
+		}
 		resource.setCreatedDate(new Date());
 		
 		resourceRepo.save(resource);
@@ -64,5 +68,14 @@ public class ResourceService extends BaseService implements IResourceService {
 		} finally {
 			IOUtils.closeQuietly(output);
 		}
+	}
+
+	public File getResourceFile(int resourceId) {
+		Resource resource = resourceRepo.findOne(resourceId);
+		if (resource != null) {
+			File resourceFile = new File(resource.getPath());
+			return resourceFile.exists() ? resourceFile : null;
+		}
+		return null;
 	}
 }

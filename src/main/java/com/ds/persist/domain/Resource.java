@@ -38,6 +38,10 @@ public class Resource implements Serializable {
 	@OneToMany(mappedBy="resource")
 	private List<UserPhoto> userPhotos;
 
+	public Resource(int resourceId) {
+		this.resourceId = resourceId;
+	}
+	
 	public Resource() {
 	}
 

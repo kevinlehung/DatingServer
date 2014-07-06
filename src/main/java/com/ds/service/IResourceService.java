@@ -1,5 +1,7 @@
 package com.ds.service;
 
+import java.io.File;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ds.persist.domain.UserPhoto;
@@ -12,5 +14,7 @@ import com.ds.persist.domain.UserPhoto;
 public interface IResourceService extends IBaseService {
 
 	UserPhoto addPhoto(int userId, MultipartFile file, String filename);
+
+	File getResourceFile(int resourceId);
 	
 }

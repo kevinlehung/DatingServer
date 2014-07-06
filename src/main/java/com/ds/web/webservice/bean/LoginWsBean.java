@@ -6,10 +6,8 @@ package com.ds.web.webservice.bean;
  *
  */
 public class LoginWsBean extends BaseWsBean {
-	public interface LoginResult {
-		public static final String LOGIN_SUCCESSED = "SUCCESSED";
-		public static final String LOGIN_FAILED = "FAILED";
-	}
+	public static final int LOGIN_SUCCESSED_CODE = 1;
+	public static final int LOGIN_FAILED_CODE = -1;
 	
 	private String jSessionId;
 

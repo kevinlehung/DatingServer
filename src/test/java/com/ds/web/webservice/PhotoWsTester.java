@@ -1,18 +1,19 @@
 package com.ds.web.webservice;
 
+import java.io.File;
+
 import org.junit.Test;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.ds.BaseTester;
-import com.ds.web.webservice.bean.UserProfileWsBean;
+import com.ds.web.webservice.bean.LoginWsBean;
 import com.ds.web.webservice.util.WsTesterHelper;
 
 /**
@@ -20,14 +21,12 @@ import com.ds.web.webservice.util.WsTesterHelper;
  * @author hunglevn@outlook.com
  *
  */
-public class SearchUserProfileWsTester  extends BaseTester {
+public class PhotoWsTester  extends BaseTester {
 	@Test
-	public void testSearchUserProfileWs() {
+	public void testRetrievePhoto() {
 		HttpHeaders headers = WsTesterHelper.buildBasicHeaders();
-		WsTesterHelper.addAuthHeaders(headers, "hello@yahoo.com", "njiijn");
+		
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-		params.set("gender", "FEMALE");
-		params.set("purpose", "TO_TI_TE");
 		
 		HttpEntity<MultiValueMap<String,String>> requestEntity = new HttpEntity<MultiValueMap<String,String>>(
 				params, headers);
@@ -38,10 +37,9 @@ public class SearchUserProfileWsTester  extends BaseTester {
 		template.getMessageConverters().add(formHttpMessageConverter);
 		template.getMessageConverters().add(stringHttpMessageConverter);
 		
-		UserProfileWsBean userProfileWsBean = template.postForObject(
-				"http://localhost:8080/ds/ws/search_user_profile.ds", requestEntity,
-				UserProfileWsBean.class, new Object[]{});
-		System.out.println(userProfileWsBean.getAboutMe());
+		File resourceFile = template.postForObject(
+				"http://localhost:8080/ds/ws/retrieve_photo.ds?resourceId=1", requestEntity,
+				File.class, new Object[]{});
+		System.out.println(resourceFile.length());
 	}
-
 }

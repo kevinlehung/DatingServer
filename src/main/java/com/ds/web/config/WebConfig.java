@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -32,5 +34,12 @@ public class WebConfig extends WebMvcConfigurationSupport{
 		viewResolver.setPrefix("/WEB-INF/jsp/");
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
+	}
+	
+	@Bean
+	public MultipartResolver multipartResolver() {
+		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		resolver.setMaxUploadSize(1024*1024);//1MB
+		return resolver;
 	}
 }

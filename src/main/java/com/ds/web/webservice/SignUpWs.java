@@ -20,7 +20,6 @@ import com.ds.service.IUserService;
 import com.ds.web.form.UserSignUpForm;
 import com.ds.web.util.SecurityUtil;
 import com.ds.web.webservice.bean.UserDetailWsBean;
-import com.ds.web.webservice.util.WsUtil;
 
 /**
  *
@@ -41,17 +40,15 @@ public class SignUpWs {
 	public UserDetailWsBean doSignup(HttpServletRequest request, HttpServletResponse response,
     		@Valid@RequestBody UserSignUpForm userSignUpForm, BindingResult result) {
 		boolean hasError = result.hasErrors();
-		UserDetailWsBean userDetailWsBean = null;
+		UserDetailWsBean userDetailWsBean = new UserDetailWsBean();
 		
 		if (!hasError) {
 			User user = userService.createUser(userSignUpForm);
 			SecurityUtil.authenticateUserAndSetSession(user, request, authenticationManager);
-			userDetailWsBean = WsUtil.buildSuccessUserDetailWsBean();
+			userDetailWsBean.setUserEmail(user.getUserEmail());
 		} else {
-			userDetailWsBean = WsUtil.buildFailedUserDetailWsBean();
+			userDetailWsBean.setResultCode(UserDetailWsBean.DEFAULT_FAILED_CODE);
 		}
-		
 		return userDetailWsBean;
-		
 	}
 }

@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
@@ -34,9 +32,12 @@ public class Profile implements Serializable {
 	@Column(name="FULL_NAME", nullable=false, length=128)
 	private String fullName;
 
-	@Column(nullable=false, length=1)
+	@Column(name="GENDER", nullable=false, length=1)
 	private String gender;
 
+	@Column(name="MARITAL_STATUS", nullable=false, length=1)
+	private String maritalStatus;
+	
 	@Column(length=32)
 	private String phone;
 
@@ -45,11 +46,12 @@ public class Profile implements Serializable {
 	@JoinColumn(name="USER_ID", nullable=false, insertable=false, updatable=false)
 	private User user;
 
-	public Profile(int userId, String fullName, String gender, String aboutMe) {
+	public Profile(int userId, String fullName, String gender, String aboutMe, String maritalStatus) {
 		this.userId = userId;
 		this.fullName = fullName;
 		this.gender = gender;
 		this.aboutMe = aboutMe;
+		this.maritalStatus = maritalStatus;
 	}
 	
 	public Profile() {
@@ -93,6 +95,15 @@ public class Profile implements Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	
+	public String getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	public void setMaritalStatus(String maritalStatus) {
+		this.maritalStatus = maritalStatus;
 	}
 
 	public User getUser() {

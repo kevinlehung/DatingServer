@@ -1,5 +1,8 @@
 package com.ds.web.webservice.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 
  * @author hunglevn@outlook.com
@@ -8,7 +11,7 @@ package com.ds.web.webservice.bean;
 public class UserProfileWsBean extends BaseWsBean {
 	private String fullName;
 	private String aboutMe;
-	private String[] photoUrls;
+	private List<String> photoUrls = new ArrayList<String>();
 	public String getFullName() {
 		return fullName;
 	}
@@ -21,10 +24,10 @@ public class UserProfileWsBean extends BaseWsBean {
 	public void setAboutMe(String aboutMe) {
 		this.aboutMe = aboutMe;
 	}
-	public String[] getPhotoUrls() {
+	public List<String> getPhotoUrls() {
 		return photoUrls;
 	}
-	public void setPhotoUrls(String[] photoUrls) {
+	public void setPhotoUrls(List<String> photoUrls) {
 		this.photoUrls = photoUrls;
 	}
 	
